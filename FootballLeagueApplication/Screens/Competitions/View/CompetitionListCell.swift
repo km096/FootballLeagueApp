@@ -11,7 +11,7 @@ struct CompetitionListCell: View {
   let competition: Competition
     var body: some View {
           HStack {
-            AsyncImage(url: URL(string: competition.emblem ?? "")) { image in
+            AsyncImage(url: URL(string: competition.emblemUrl ?? "")) { image in
                   image
                       .listCellImageModifier()
               } placeholder: {

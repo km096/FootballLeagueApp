@@ -13,7 +13,7 @@ struct TeamDetailView: View {
   var body: some View {
     ScrollView {
       VStack(spacing: 20) {
-        if let logoURL = team.crest, let url = URL(string: logoURL) {
+        if let logoURL = team.crestUrl, let url = URL(string: logoURL) {
           AsyncImage(url: url) { image in
             image
               .resizable()
@@ -35,31 +35,34 @@ struct TeamDetailView: View {
           Group {
             InfoRow(label: "Name", value: team.name ?? "Unknown")
             InfoRow(label: "Short Name", value: team.shortName ?? "Unknown")
+            InfoRow(label: "TLA", value: team.tla ?? "Unknown")
             InfoRow(label: "Address", value: team.address ?? "Unknown")
+            InfoRow(label: "Phone", value: team.phone ?? "Unknown")
             InfoRow(label: "Website", value: team.website ?? "Unknown")
+            InfoRow(label: "Email", value: team.email ?? "Unknown")
             InfoRow(label: "Founded", value: team.founded?.description ?? "Unknown")
             InfoRow(label: "Club Colors", value: team.clubColors ?? "Unknown")
             InfoRow(label: "Venue", value: team.venue ?? "Unknown")
           }
 
-          if let coach = team.coach {
-            Text("Coach")
-              .font(.title2)
-              .fontWeight(.bold)
-              .padding(.top)
-            InfoRow(label: "Name", value: coach.name ?? "Unknown")
-            InfoRow(label: "Nationality", value: coach.nationality ?? "Unknown")
-            InfoRow(label: "Contract", value: "\(coach.contract?.start ?? "Unknown") - \(coach.contract?.until ?? "Unknown")")
-          }
+//          if let coach = team.coach {
+//            Text("Coach")
+//              .font(.title2)
+//              .fontWeight(.bold)
+//              .padding(.top)
+//            InfoRow(label: "Name", value: coach.name ?? "Unknown")
+//            InfoRow(label: "Nationality", value: coach.nationality ?? "Unknown")
+//            InfoRow(label: "Contract", value: "\(coach.contract?.start ?? "Unknown") - \(coach.contract?.until ?? "Unknown")")
+//          }
           
-          Text("Players")
-            .font(.title2)
-            .fontWeight(.bold)
-            .padding(.top)
-
-          ForEach(team.squad ?? []) { player in
-            PlayerRow(player: player)
-          }
+//          Text("Players")
+//            .font(.title2)
+//            .fontWeight(.bold)
+//            .padding(.top)
+//
+//          ForEach(team.squad ?? []) { player in
+//            PlayerRow(player: player)
+//          }
         }
       }
       .padding()

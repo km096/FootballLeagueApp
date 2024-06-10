@@ -10,7 +10,7 @@ import Foundation
 class URLCreator {
     static let shared = URLCreator()
 
-  let baseURL = "https://api.football-data.org/v4/"
+  let baseURL = "https://api.football-data.org/v2/"
   let apiKey = "a30f03b385cc4e57968ac20f9257b352"
 
     private init() {}

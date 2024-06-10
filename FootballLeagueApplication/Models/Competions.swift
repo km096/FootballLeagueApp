@@ -4,56 +4,60 @@
 //Created by: Kareem on 6/9/24                      
 //Copyright (c) 2023 Kareem
 
+
 import Foundation
 
+// MARK: - CompetitionsModel
 struct CompetitionsModel: Codable {
     let count: Int?
-    let filters: Filters?
     let competitions: [Competition]?
 }
 
-struct Filters: Codable {
-    let client: String?
-}
-
+// MARK: - Competition
 struct Competition: Codable, Identifiable {
     var id: Int?
-    var area: Area?
     var name: String?
     var code: String?
-    var type: String?
-    var emblem: String?
-    var plan: String?
+    var emblemUrl: String?
     var currentSeason: CurrentSeason?
     var numberOfAvailableSeasons: Int?
-    var lastUpdated: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id, name, code
+        case emblemUrl
+        case currentSeason, numberOfAvailableSeasons
+    }
 }
 
-struct Area: Codable {
-    let id: Int?
-    let name: String?
-    let code: String?
-    let flag: String?
-}
 
+// MARK: - CurrentSeason
 struct CurrentSeason: Codable {
     let id: Int?
-    let startDate: String?
-    let endDate: String?
+    let startDate, endDate: String?
     let currentMatchday: Int?
-    let winner: Winner?
 }
 
-struct Winner: Codable, Identifiable {
+
+// MARK: - CompetitionDetailsModel
+struct CompetitionDetailsModel: Codable {
+    var id: Int?
+    var name, code: String?
+    var emblemURL: String?
+    var plan: String?
+    var currentSeason: Season?
+    var seasons: [Season]?
+
+    enum CodingKeys: String, CodingKey {
+        case id, name, code
+        case emblemURL
+        case plan, currentSeason, seasons
+    }
+}
+
+
+// MARK: - Season
+struct Season: Codable {
     let id: Int?
-    let name: String?
-    let shortName: String?
-    let tla: String?
-    let crest: String?
-    let address: String?
-    let website: String?
-    let founded: Int?
-    let clubColors: String?
-    let venue: String?
-    let lastUpdated: String?
+    let startDate, endDate: String?
+    let currentMatchday: Int?
 }

@@ -9,7 +9,7 @@ import SwiftUI
 @MainActor
 final class CompetitionDetailViewModel: ObservableObject {
   @Published var teams: [Team] = []
-  @Published var competitions: Competition = Competition()
+  @Published var competitionDetails: CompetitionDetailsModel = CompetitionDetailsModel()
   @Published var alertItem: AlertItem?
   @Published var isLoading = false
   @Published var errorMessage: String?
@@ -21,7 +21,7 @@ final class CompetitionDetailViewModel: ObservableObject {
     Task {
       do {
         let competitionModel = try await NetworkManager.shared.fetchCompetitionDetails(for: competitionId)
-        self.competitions = competitionModel 
+        self.competitionDetails = competitionModel
         isLoading = false
       } catch {
         alertItem = NetworkManager.shared.errorHandling(error)

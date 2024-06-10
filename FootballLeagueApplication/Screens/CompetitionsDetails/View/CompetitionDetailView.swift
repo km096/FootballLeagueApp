@@ -13,7 +13,7 @@ struct CompetitionDetailView: View {
   var body: some View {
     VStack {
       VStack {
-        AsyncImage(url: URL(string: competition.emblem ?? "")) { image in
+        AsyncImage(url: URL(string: competition.emblemUrl ?? "")) { image in
           image
             .resizable()
             .aspectRatio(contentMode: .fit)
@@ -39,7 +39,8 @@ struct CompetitionDetailView: View {
               InfoRow(label: "Short Name", value: competition.code ?? "Unknown")
               InfoRow(label: "Number of Team", value: "\(competition.numberOfAvailableSeasons ?? 0)")
               InfoRow(label: "Number of Games", value: "\(competition.currentSeason?.currentMatchday ?? 0)")
-
+              InfoRow(label: "Current Season start date", value: competition.currentSeason?.startDate ?? "Unknown")
+              InfoRow(label: "Current Season end date", value: competition.currentSeason?.endDate ?? "Unknown")
             }
 
             Text("Teams")
@@ -55,7 +56,7 @@ struct CompetitionDetailView: View {
                   .padding(.horizontal, 2)
                   .overlay(alignment: .leading) {
                     HStack(spacing: 20) {
-                      if let logoURL = team.crest,
+                      if let logoURL = team.crestUrl,
                          let url = URL(string: logoURL) {
                         AsyncImage(url: url) { image in
                           image.resizable()
