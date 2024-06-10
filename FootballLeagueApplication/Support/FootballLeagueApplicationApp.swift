@@ -7,10 +7,10 @@
 import SwiftUI
 
 @main
-struct FootballLeagueApplicationApp: App {
+struct FootballLeagueApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CompetitionsView()
         }
     }
 }
